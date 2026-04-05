@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sathishkumar Vengatesan | Portfolio</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Component CSS -->
+    <link rel="stylesheet" href="app/navbar/navbar.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="index.css">
+
+    <style>
+        /* ================= CSS VARIABLES - DARK THEME (DEFAULT) ================= */
+        :root,
+        [data-theme="dark"] {
+            --bg-primary: #0b1d3a;
+            --bg-secondary: #0f2847;
+            --text-color: #ffffff;
+            --text-secondary: #a0aec0;
+            --navbar-bg: rgba(8, 21, 43, 0.7);
+            --navbar-bg-scrolled: rgba(8, 21, 43, 0.95);
+            --navbar-border: rgba(30, 144, 255, 0.2);
+            --mobile-menu-bg: rgba(8, 21, 43, 0.98);
+            --theme-toggle-bg: rgba(30, 144, 255, 0.15);
+            --card-bg: rgba(15, 40, 71, 0.8);
+            --section-border: rgba(30, 144, 255, 0.2);
+        }
+
+        /* ================= CSS VARIABLES - LIGHT THEME ================= */
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #e2e8f0;
+            --text-color: #1e293b;
+            --text-secondary: #64748b;
+            --navbar-bg: rgba(248, 250, 252, 0.8);
+            --navbar-bg-scrolled: rgba(248, 250, 252, 0.95);
+            --navbar-border: rgba(30, 144, 255, 0.3);
+            --mobile-menu-bg: rgba(248, 250, 252, 0.98);
+            --theme-toggle-bg: rgba(30, 144, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --section-border: rgba(30, 144, 255, 0.15);
+        }
+
+        /* ================= GLOBAL STYLES ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-color);
+            padding-top: 70px;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        /* Temporary section styles for testing */
+        section {
+            min-height: 100vh;
+            border-bottom: 1px solid var(--section-border);
+          }
+
+        /* Light theme specific adjustments */
+        [data-theme="light"] .nav-left {
+            background: linear-gradient(90deg, #0066cc, #1e90ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        [data-theme="light"] .nav-btn {
+            background: linear-gradient(90deg, #0066cc, #1e90ff);
+        }
+
+        /* Mobile bottom padding */
+        @media (max-width: 900px) {
+            body {
+                padding-bottom: 80px;
+            }
+        }
+
+        /* Smooth transitions for all theme-affected elements */
+        .navbar,
+        .nav-right,
+        .nav-right a,
+        .theme-toggle,
+        .theme-toggle-mobile,
+        .bottom-nav,
+        .bottom-nav-item,
+        section {
+            transition: all 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Include Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Page Sections (for testing navigation) -->
+    <section id="home"></section>
+    <section id="core"></section>
+    <section id="recommended"></section>
+    <section id="additional"></section>
+    <section id="contact"></section>
+    <div id="footer-container"></div>
+
+    <!-- Load Navbar HTML -->
+    <script>
+        // Apply saved theme immediately to prevent flash
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+
+        fetch('app/navbar/navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-container').innerHTML = html;
+                // Load navbar JS after HTML is inserted
+                const script = document.createElement('script');
+                script.src = 'app/navbar/navbar.js';
+                document.body.appendChild(script);
+            })
+            .catch(err => console.error('Error loading navbar:', err));
+    </script>
+
+    <!-- Main JS -->
+    <script src="index.js"></script>
+
+<script>
+  fetch('app/home/home.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('home').innerHTML = html;
+      // Load home CSS
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'app/home/home.css';
+      document.head.appendChild(link);
+      // Load home JS
+      const script = document.createElement('script');
+      script.src = 'app/home/home.js';
+      document.body.appendChild(script);
+    });
+</script>
+<script>
+    fetch('app/core/core.html')
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('core').innerHTML = html;
+
+            // Load core CSS
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'app/core/core.css';
+            document.head.appendChild(link);
+
+            // Load core JS
+            const script = document.createElement('script');
+            script.src = 'app/core/core.js';
+            document.body.appendChild(script);
+        })
+        .catch(err => console.error('Error loading core:', err));
+</script>
+
+<script>
+    fetch('app/recommended/recommended.html')
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('recommended').innerHTML = html;
+
+            const link = document.createElement('link');
+            link.rel   = 'stylesheet';
+            link.href  = 'app/recommended/recommended.css';
+            document.head.appendChild(link);
+
+            const script = document.createElement('script');
+            script.src   = 'app/recommended/recommended.js';
+            document.body.appendChild(script);
+        })
+        .catch(err => console.error('Error loading recommended:', err));
+</script>
+
+<script>
+    fetch('app/additional/additional.html')
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('additional').innerHTML = html;
+
+            const link = document.createElement('link');
+            link.rel   = 'stylesheet';
+            link.href  = 'app/additional/additional.css';
+            document.head.appendChild(link);
+
+            const script = document.createElement('script');
+            script.src   = 'app/additional/additional.js';
+            document.body.appendChild(script);
+        })
+        .catch(err => console.error('Error loading additional:', err));
+</script>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<!-- Contact loader -->
+<script>
+    fetch('app/contact/contact.html')
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('contact').innerHTML = html;
+
+            const link = document.createElement('link');
+            link.rel   = 'stylesheet';
+            link.href  = 'app/contact/contact.css';
+            document.head.appendChild(link);
+
+            // Load contact JS (EmailJS SDK is injected by contact.html itself)
+            // We use a small delay to let the SDK tag parse first
+            setTimeout(() => {
+                const script = document.createElement('script');
+                script.src   = 'app/contact/contact.js';
+                document.body.appendChild(script);
+            }, 300);
+        })
+        .catch(err => console.error('Error loading contact:', err));
+</script>
+
+<!-- Footer loader -->
+<script>
+    fetch('app/footer/footer.html')
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById('footer-container').innerHTML = html;
+
+            const link = document.createElement('link');
+            link.rel   = 'stylesheet';
+            link.href  = 'app/footer/footer.css';
+            document.head.appendChild(link);
+
+            const script = document.createElement('script');
+            script.src   = 'app/footer/footer.js';
+            document.body.appendChild(script);
+        })
+        .catch(err => console.error('Error loading footer:', err));
+</script>
+
+<div id="chatbot-root"></div>
+
+<script>
+fetch("./app/chatbot/chatbot.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("chatbot-root").innerHTML = data;
+
+    // ✅ Load JS AFTER HTML is inserted
+    const script = document.createElement("script");
+    script.src = "./app/chatbot/chatbot.js";
+    document.body.appendChild(script);
+  })
+  .catch(err => console.error("Error loading chatbot:", err));
+</script>
+
+<link rel="stylesheet" href="./app/chatbot/chatbot.css">
+
+</body>
+</html>

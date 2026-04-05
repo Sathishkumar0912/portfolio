@@ -1,0 +1,29 @@
+<div id="chatbot-wrapper">
+  <!-- Floating Chat Toggle Button -->
+  <div id="chat-toggle" onclick="toggleChat()" title="Chat with my AI Assistant">
+    <i class="fa-solid fa-comment-dots"></i>
+  </div>
+
+  <!-- Chatbot Container -->
+  <div id="chatbot-container" class="hidden">
+    <div id="chat-header">
+      <div class="chat-header-left">
+        <i class="fa-solid fa-robot"></i> My AI Assistant
+      </div>
+      <span id="chat-close" onclick="toggleChat()">✖</span>
+    </div>
+
+    <div id="chat-body">
+      <div class="bot-message fade-in">
+        👋 Hi there! I'm your AI assistant CHARM— ask me about Sathishkumar Vengatesan.
+      </div>
+    </div>
+
+    <div id="chat-input-area">
+      <input id="chat-input" placeholder="Ask something..." autocomplete="off" />
+      <button id="send-btn" onclick="sendMessage()">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>
