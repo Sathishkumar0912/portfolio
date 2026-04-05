@@ -57,12 +57,11 @@ app.post("/api/chat", async (req, res) => {
     const reply = result.response.text();
     res.json({ reply });
   } catch (error) {
-    console.error("Gemini API Error:", error.message);
-    res.status(500).json({
-      reply:
-        "I'm having trouble reaching my server right now. Please try again shortly."
-    });
-  }
+  console.error("FULL ERROR:", error);
+  res.status(500).json({
+    reply: error.message || "Server error"
+  });
+}
 });
 
 app.listen(PORT, () => {
