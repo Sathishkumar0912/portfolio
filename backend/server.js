@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-pro",
+    model: "gemini-2.0-flash-lite-preview-02-05",
 systemInstruction: `You are the official AI Assistant for Sathishkumar Vengatesan. Your goal is to represent his professional brand with technical precision, accuracy, and professionalism. 
 
 SATHISHKUMAR VENGATESAN
@@ -67,5 +67,3 @@ app.post("/api/chat", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
 });
-
-console.log("API KEY:", process.env.GEMINI_API_KEY);
