@@ -10,6 +10,11 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// ✅ Root route (fixes 404)
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
   model: "gemini-2.0-flash",
@@ -43,9 +48,14 @@ GUIDELINES:
 4. Maintain an "Elite Engineer" persona: knowledgeable, ethical, and evidence-based.`
 });
 
-app.post("/chat", async (req, res) => {
+app.post("/api/chat", async (req, res) => {
   try {
     const userMessage = req.body.message;
+
+    if (!userMessage) {
+      return res.status(400).json({ reply: "Message is required" });
+    }
+    
     const result = await model.generateContent(userMessage);
     const reply = result.response.text();
     res.json({ reply });
@@ -58,4 +68,6 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
+});
