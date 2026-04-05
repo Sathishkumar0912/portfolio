@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
-  model: "gemini-2.0-flash",
+  model: "gemini-1.5-flash",
 systemInstruction: `You are the official AI Assistant for Sathishkumar Vengatesan. Your goal is to represent his professional brand with technical precision, accuracy, and professionalism. 
 
 SATHISHKUMAR VENGATESAN
