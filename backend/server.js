@@ -1,9 +1,6 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-
-dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -55,7 +52,7 @@ app.post("/api/chat", async (req, res) => {
     if (!userMessage) {
       return res.status(400).json({ reply: "Message is required" });
     }
-    
+
     const result = await model.generateContent(userMessage);
     const reply = result.response.text();
     res.json({ reply });
@@ -71,3 +68,5 @@ app.post("/api/chat", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
 });
+
+console.log("API KEY:", process.env.GEMINI_API_KEY);
