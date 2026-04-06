@@ -43,7 +43,7 @@ async function sendMessage() {
   chatBody.appendChild(typing);
 
 try {
-  const res = await fetch("http://localhost:3000/chat", {
+  const res = await fetch("https://portfolio-backend-hdqj.onrender.com/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message })
@@ -57,7 +57,7 @@ try {
   appendMessage("bot", data.reply);
 } catch (error) {
   typing.remove();
-  appendMessage("bot", "⚠️ Server error. Try again later.");
+  appendMessage("bot", "⚠️ Sorry boss, I’ve run out of tokens and without premium powers, I can’t do proper detective work on him right now 🕵️‍♂️");
 }
 
   btn.disabled = false; // ✅ re-enable
